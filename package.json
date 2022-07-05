@@ -1,5 +1,29 @@
 {
   "dependencies": {
     "express": "^4.18.1"
-  }
+  },
+  "name": "javascript",
+  "description": "npm install express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://cczurda: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@github.com/cczurda/javascript.git"
+  },
+  "keywords": [
+    "Javascript",
+    "Tests",
+    "with",
+    "node.js"
+  ],
+  "author": "Clemens Czurda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cczurda/javascript/issues"
+  },
+  "homepage": "https://github.com/cczurda/javascript#readme"
 }
