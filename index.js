@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
+const model = require("./model.js")  
 
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
@@ -19,28 +20,16 @@ app.use(sessions({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-const posts = [
-    {title: 'Title 1', body: 'Body 1' },
-    {title: 'Title 2', body: 'Body 2' },
-    {title: 'Title 3', body: 'Body 3' },
-    {title: 'Title 4', body: 'Body 4' },
-];
-
-const users = {
-	"cczurda": {firstName: 'Clemens', lastName: 'Czurda', admin: true}, 
-	"fabio": {firstName: 'Fabio', lastName: 'Vogler', admin: false}
-}
-
-//app.use(express.static('public'));
+// HTML-Renderings
 app.set('view engine', 'ejs');
 
+// Routing
 app.get('/', (req, res) => {
     res.render('pages/index', { title: "Startseite", session: req.session})
 })
 
 app.get('/articles', (req, res) => {
-    res.render('pages/articles', { articles: posts, title: "Articles", session: req.session})
+    res.render('pages/articles', { articles: model.getPosts(), title: "Articles", session: req.session})
 })
 
 app.get('/about', (req, res) => {
@@ -57,16 +46,15 @@ app.get('/logout', (req, res) => {
 })
 
 app.post('/user',(req,res) => {
-    //if(req.body.username == myusername && req.body.password == mypassword){
+    if(model.validate(req.body.username, req.body.password)){
         session=req.session;
         session.userid=req.body.username;
-		session.user = users[req.body.username];
+		session.user = model.getUser(req.body.username);
         console.log(req.session)
         res.redirect('/');
-    //}
-    //else{
-    //    res.send('Invalid username or password');
-    //	}
+    } else{
+        res.redirect('/login');
+    }
 })
 
 app.use(express.static('public'));
