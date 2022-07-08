@@ -4,6 +4,10 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const model = require("./model.js")  
+var router = require('./router.js');
+
+
+
 
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
@@ -15,6 +19,8 @@ app.use(sessions({
     cookie: { maxAge: oneDay },
     resave: false
 }));
+
+app.use('/router', router);
 
 // parsing the incoming data
 app.use(express.json());
