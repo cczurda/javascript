@@ -10,8 +10,15 @@ const users = {
 	"fabio": {firstName: 'Fabio', lastName: 'Vogler', admin: false, password: "Hugo"}
 }
 
-function getPosts() {
-	return posts;
+function getPosts(t) {
+	if (t === undefined || t == "") {
+		return posts;
+	}
+	return posts.filter((post) => {
+		let str = new RegExp(t);
+		console.log(t, post.title);
+		return str.test(post.title);
+	});
 }
 
 function getUser(userid) {

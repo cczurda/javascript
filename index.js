@@ -6,9 +6,12 @@ const sessions = require('express-session');
 const model = require("./model.js")  
 var router = require('./router.js');
 const session = require("express-session");
+const path = require('path');
 
 
 
+
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')))
 
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
@@ -34,7 +37,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/articles', (req, res) => {
-    res.render('pages/articles', { articles: model.getPosts(), title: "Articles", session: req.session})
+	console.log("Title=" + req.query.title);
+    res.render('pages/articles', { articles: model.getPosts(req.query.title), title: "Articles", session: req.session})
 })
 
 app.get('/about', (req, res) => {
@@ -45,12 +49,8 @@ app.get('/login', (req, res) => {
     res.render('login', { session: req.session})
 })
 
-app.get('/logout', (req, res) => {
-	req.session.destroy();
-    res.redirect('/');
-})
 
-app.post('/user',(req,res) => {
+app.post('/login',(req,res) => {
 	let session=req.session;
 	if(model.validate(req.body.username, req.body.password)){
         session.userid=req.body.username;
@@ -62,6 +62,11 @@ app.post('/user',(req,res) => {
 		console.log(req.session)
         res.redirect('/login');
     }
+})
+
+app.get('/logout', (req, res) => {
+	req.session.destroy();
+    res.redirect('/');
 })
 
 app.use(express.static('public'));
