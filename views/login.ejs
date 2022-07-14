@@ -1,5 +1,4 @@
-<%- include('partials/head', {title : title}) %>
-<%- include('partials/header', {userid: ""}) %>
+<%- include('partials/header', {title : "Login", session: session}) %>
 <div class="container">
     <form action="/user" method="post">
         <h2>Login</h2>
@@ -13,4 +12,4 @@
     </form>
 </div>
 
-<%- include('partials/footer', {userid: ""}) %>
+<%- include('partials/footer') %>

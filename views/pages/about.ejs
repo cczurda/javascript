@@ -1,8 +1,6 @@
-<%- include('../partials/head', {title : title}) %>
-<%- include('../partials/header', {userid: (session != null) ? session.userid : ""}) %>
+<%- include('../partials/header', {title : title, session: session}) %>
 <div class="container">
     <h1>Über meinen Blog</h1>
     <p>Some information can be found here. <%= session.userid %></p>
 </div>
-
 <%- include('../partials/footer') %>

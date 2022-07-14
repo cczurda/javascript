@@ -1,6 +1,4 @@
-<%- include('../partials/head', {title : title}) %>
-<%- include('../partials/header', {userid: (session != null) ? session.userid : ""}) %>
-<body>
+<%- include('../partials/header', {title : title, session: session}) %>
     <ul>
         <% articles.forEach((article)=> { %>
             <li>
@@ -14,5 +12,4 @@
             <hr />
         <% }) %>
     </ul>
-</body>
 <%- include('../partials/footer') %>

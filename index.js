@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const model = require("./model.js")  
 var router = require('./router.js');
+const session = require("express-session");
 
 
 
@@ -19,8 +20,6 @@ app.use(sessions({
     cookie: { maxAge: oneDay },
     resave: false
 }));
-
-app.use('/router', router);
 
 // parsing the incoming data
 app.use(express.json());
@@ -43,7 +42,7 @@ app.get('/about', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-    res.render('login', { title: "Login", session: req.session})
+    res.render('login', { session: req.session})
 })
 
 app.get('/logout', (req, res) => {
@@ -52,18 +51,22 @@ app.get('/logout', (req, res) => {
 })
 
 app.post('/user',(req,res) => {
-    if(model.validate(req.body.username, req.body.password)){
-        session=req.session;
+	let session=req.session;
+	if(model.validate(req.body.username, req.body.password)){
         session.userid=req.body.username;
 		session.user = model.getUser(req.body.username);
         console.log(req.session)
         res.redirect('/');
     } else{
+		session.message = "Login falsch";
+		console.log(req.session)
         res.redirect('/login');
     }
 })
 
 app.use(express.static('public'));
+
+app.use('/router', router);
 
 // Server setup
 app.listen(3000, () => {
