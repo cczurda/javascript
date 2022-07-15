@@ -5,11 +5,6 @@ const posts = [
     {title: 'Title 4', body: 'Body 4' },
 ];
 
-const users = {
-	"cczurda": {firstName: 'Clemens', lastName: 'Czurda', admin: true, password: "Hugo"}, 
-	"fabio": {firstName: 'Fabio', lastName: 'Vogler', admin: false, password: "Hugo"}
-}
-
 function getPosts(t) {
 	if (t === undefined || t == "") {
 		return posts;
@@ -21,12 +16,5 @@ function getPosts(t) {
 	});
 }
 
-function getUser(userid) {
-	return users[userid];
-}
 
-function validate(userid, password) {
-	return(password === users[userid].password);
-}
-
-module.exports = { getPosts, getUser, validate };
+module.exports = { getPosts };

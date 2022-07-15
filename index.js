@@ -3,7 +3,8 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
-const model = require("./model.js")  
+const model = require("./model.js");
+const auth = require("./auth.js");
 var router = require('./router.js');
 const session = require("express-session");
 const path = require('path');
@@ -52,9 +53,9 @@ app.get('/login', (req, res) => {
 
 app.post('/login',(req,res) => {
 	let session=req.session;
-	if(model.validate(req.body.username, req.body.password)){
+	if(auth.validate(req.body.username, req.body.password)){
         session.userid=req.body.username;
-		session.user = model.getUser(req.body.username);
+		session.user = auth.getUser(req.body.username);
         console.log(req.session)
         res.redirect('/');
     } else{
