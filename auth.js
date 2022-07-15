@@ -12,4 +12,14 @@ function validate(userid, password) {
 	return(password === users[userid].password);
 }
 
-module.exports = { getUser, validate };
+function loggedIn(req, res, next) {
+	let session=req.session;
+	if (session.userid != undefined && session.userid != "") {
+		next();
+	} else {
+		session.message = "Nicht angemeldet";
+		res.redirect('/login');
+	}
+}
+
+module.exports = { getUser, validate, loggedIn };

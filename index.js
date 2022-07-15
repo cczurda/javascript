@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     res.render('pages/index', { title: "Startseite", session: req.session})
 })
 
-app.get('/articles', (req, res) => {
+app.get('/articles', auth.loggedIn, (req, res) => {
 	console.log("Title=" + req.query.title);
     res.render('pages/articles', { articles: model.getPosts(req.query.title), title: "Articles", session: req.session})
 })
