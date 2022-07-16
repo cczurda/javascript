@@ -1,0 +1,7 @@
+<%- include('../partials/header', {title : title, session: session}) %>
+<div class="container">
+	<div class="row"><lable class="col-1" for="id">id</lable><span class="col-6" id="id"><%= post.id %></span></div>
+	<div class="row"><lable class="col-1">Title</lable><span class="col-6"><%= post.title %></span></div>
+	<div class="row"><lable class="col-1">Text</lable><span class="col-6"><%= post.body %></span></div>
+</div>
+<%- include('../partials/footer') %>

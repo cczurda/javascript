@@ -42,6 +42,11 @@ app.get('/articles', auth.loggedIn, (req, res) => {
     res.render('pages/articles', { articles: model.getPosts(req.query.title), title: "Articles", session: req.session})
 })
 
+app.get('/article/:id', auth.loggedIn, (req, res) => {
+	console.log("Title=" + req.params.id);
+    res.render('pages/article', { post: model.getPost(req.params.id), title: "Article", session: req.session})
+})
+
 app.get('/about', (req, res) => {
     res.render('pages/about', { title: "About", session: req.session})
 })
