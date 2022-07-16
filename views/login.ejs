@@ -1,15 +1,24 @@
 <%- include('partials/header', {title : "Login", session: session}) %>
 <div class="container">
-    <form action="/login" method="post">
-        <h2>Login</h2>
-        <div class="input-field">
-            <input type="text" name="username" id="username" placeholder="Enter Username">
-        </div>
-        <div class="input-field">
-            <input type="password" name="password" id="password" placeholder="Enter Password">
-        </div>
-        <input type="submit" value="Login">
-    </form>
+	<section class="w-50 p-4 justify-content-center pb-4">
+		<h2>Login</h2>
+		<form action="/login" method="post">
+			<div class="form-outline mb-3">
+				<label class="form-label" for="username">Enter Username</label>
+				<input name="username" id="username" class="form-control form-control-lg" />
+			</div>
+			
+			<div class="form-outline mb-3">
+				<label class="form-label" for="password">Enter Password</label>
+				<input name="password" id="password" class="form-control form-control-lg" />
+			</div>        
+			
+			<div class="form-outline mb-4">
+				<input type="submit" value="Login">
+			</div>
+	
+		</form>
+	</section>
 </div>
 
 <%- include('partials/footer') %>
