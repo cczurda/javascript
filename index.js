@@ -9,10 +9,9 @@ var router = require('./router.js');
 const session = require("express-session");
 const path = require('path');
 
-
-
-
-app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')))
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
+app.use('/css', express.static(path.join(__dirname, 'node_modules/mdb-ui-kit/css')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules/mdb-ui-kit/js')));
 
 // creating 24 hours from milliseconds
 const oneDay = 1000 * 60 * 60 * 24;
