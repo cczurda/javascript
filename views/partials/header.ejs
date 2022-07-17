@@ -20,7 +20,7 @@
                 <input type="search" name="title" id="title" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
             </form>
             <div class="text-end">
-                <a href="/<%= (session == undefined || session.userid == undefined) ? "login" : "logout" %>" type="button" class="btn btn-outline-light me-2"><%= (session == undefined || session.userid == undefined) ? "Login" : "Logout" %></a>
+                <a class="btn btn-outline-light" href="/<%= (session == undefined || session.userid == undefined) ? "login" : "logout" %>" class="btn btn-outline-light me-2"><%= (session == undefined || session.userid == undefined) ? "Login" : "Logout" %></a>
                 <button type="button" class="btn btn-warning">Sign-up</button>
             </div>
         </div>
